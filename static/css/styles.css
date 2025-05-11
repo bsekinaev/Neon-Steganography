@@ -1,0 +1,226 @@
+:root {
+    --neon-blue: #08f;
+    --neon-pink: #f0f;
+    --neon-green: #0f8;
+    --dark-bg: #121212;
+    --darker-bg: #0a0a0a;
+    --text-color: #e0e0e0;
+    --error-color: #ff4d4d;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 136, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 20%);
+}
+
+.container, .result-container {
+    max-width: 800px;
+    width: 100%;
+    background-color: var(--darker-bg);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 30px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.message-box {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--neon-blue);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: 'Courier New', monospace;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.binary-warning {
+    color: var(--error-color);
+    background-color: rgba(255, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+    border-left: 3px solid var(--error-color);
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--neon-green);
+    color: #000;
+    box-shadow: 0 0 15px rgba(0, 248, 136, 0.5);
+}
+
+.btn-secondary {
+    background-color: var(--neon-blue);
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 136, 255, 0.5);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px currentColor;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.9rem;
+}
+.flash-messages {
+    margin: 15px 0;
+    width: 100%;
+}
+
+.flash-messages p {
+    padding: 10px 15px;
+    background-color: rgba(255, 0, 0, 0.2);
+    border-left: 3px solid var(--neon-pink);
+    color: var(--neon-pink);
+    border-radius: 4px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--neon-green);
+    font-weight: 500;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.file-upload {
+    display: block;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--text-color);
+}
+
+.file-upload:hover {
+    border-color: var(--neon-blue);
+    background-color: rgba(0, 136, 255, 0.1);
+}
+
+textarea {
+    width: 100%;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+    transition: border 0.3s;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--neon-green);
+    box-shadow: 0 0 10px rgba(0, 248, 136, 0.2);
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+button {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+button[name="encode"] {
+    background-color: var(--neon-blue);
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 136, 255, 0.5);
+}
+
+button[name="decode"] {
+    background-color: var(--neon-pink);
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px currentColor;
+}
+
+.file-info {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .buttons {
+        flex-direction: column;
+    }
+}

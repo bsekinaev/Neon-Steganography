@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результат декодирования</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* Специфичные стили только для этой страницы */
+        h1 {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+    </style>
+</head>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Метатеги и стили остаются без изменений -->
+    <style>
+        /* ... существующие стили ... */
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Результат декодирования</h1>
+        
+        <div class="message-box">
+            {% if message is defined and message is not none %}
+                {% if message is string and not message.startswith(("Не удалось", "Ошибка")) %}
+                    {{ message }}
+                {% else %}
+                    <span style="color: var(--error-color)">
+                        {{ message if message else "Сообщение не найдено" }}
+                    </span>
+                {% endif %}
+            {% else %}
+                <span style="color: var(--error-color)">
+                    Ошибка: результат не получен
+                </span>
+            {% endif %}
+        </div>
+        
+        {% if message is defined and message is not none and message is string 
+              and message not in ["", "Сообщение не найдено"] 
+              and message|length > 0 
+              and not message.startswith(("Не удалось", "Ошибка")) %}
+            {% set printable_chars = message | replace(" ", "") | replace("\t", "") | replace("\n", "") | replace("\r", "") %}
+            {% set has_binary = printable_chars | length != printable_chars | replace(" ", "") | length %}
+            {% if has_binary %}
+                <div class="binary-warning">
+                    ⚠️ Обнаружены бинарные или непечатаемые символы
+                </div>
+            {% endif %}
+        {% endif %}
+        
+        <div class="actions">
+            <a href="{{ url_for('home') }}" class="btn btn-primary">На главную</a>
+            <a href="#" onclick="window.history.back()" class="btn btn-secondary">Назад</a>
+        </div>
+    </div>
+    
+    <footer>
+        Neon Steganography App &copy; {{ current_year }} | Все права защищены
+    </footer>
+</body>
+</html>

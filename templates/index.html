@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Steganography</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* Специфичные стили только для этой страницы */
+        h1 {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Neon Steganography</h1>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="image">Выберите изображение</label>
+                <label class="file-upload" for="image">
+                    Нажмите для выбора файла
+                    <span class="file-info">(PNG, JPG, JPEG, до 16MB)</span>
+                </label>
+                <input type="file" name="image" id="image" accept=".png,.jpg,.jpeg" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="text">Сообщение для кодирования</label>
+                <textarea name="text" id="text" placeholder="Введите ваш секретный текст здесь..."></textarea>
+            </div>
+            
+            <div class="buttons">
+                <button type="submit" name="encode">Закодировать</button>
+                <button type="submit" name="decode">Декодировать</button>
+            </div>
+        </form>
+    </div>
+    
+    <footer>
+        Neon Steganography App &copy; 2023 | Все права защищены
+    </footer>
+    
+    <script>
+        // Показываем имя выбранного файла
+        document.getElementById('image').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name || 'Файл не выбран';
+            document.querySelector('.file-upload').textContent = fileName;
+            document.querySelector('.file-info').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
